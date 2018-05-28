@@ -5,35 +5,36 @@ var campos = [
     document.querySelector('#quantidade')
 ];
 
-console.log(campos); 
+console.log(campos);
 
 var tbody = document.querySelector('table tbody');
 
-document.querySelector('.form').addEventListener('submit', function(event) {
-  
+document.querySelector('.form').addEventListener('submit', function (event) {
+
+    event.preventDefault();
+
     var tr = document.createElement('tr');
 
     campos.forEach(function (campo) {
 
-        //Cria um td sem informações
         var td = document.createElement('td');
-
-        //Atribui um valor a td
         td.textContent = campo.value;
-
-        //Adiciona a td ma tr
         tr.appendChild(td);
-    })
-    
+    });
+
+    var tdVolume = document.createElement('td');
+    tdVolume.textContent = campos[1].value * campos[2].value;
+    tr.appendChild(tdVolume);
+
+    //Adicionando a tr
+    tbody.appendChild(tr);
+
+    campos[0].value = '';
+    campos[1].value = 1;
+    campos[2].value = 0;
+    campos[0].focus();
+
 });
 
-//Nova td que armazenará o volume da negociação
 
-var tdVolume = document.createElement('td');
-
-//as posições 1 e 2 do array armazenam os campos de quantidade e valor, respectivamente
-td.volume.textContent = campos[1].value * campos[2].value;
-
-//Adicionando a td que faltava à tr
-tr.appendChild(tdVolume);
 
